@@ -1,0 +1,137 @@
+Your submission was recorded at 2017-07-18 06:48:06 +0000 : submission is on time.
+Score: 66.0/100.0
+----------------------------------------
+Running student tests found in features/ spec/:
+  Cucumber: 3 out of 3 scenarios passed
+  RSpec: 0 out of 0 tests passed
+  Score: 40/40
+----------------------------------------
+
+----------------------------------------
+Checking coverage for:
+  controllers >= 90.00%
+  models >= 90.00%
+----------------------------------------
+  all files: 75.00%% coverage
+  controllers: 73.33%% coverage
+  models: 100.00%% coverage
+  mailers: 100.00%% coverage
+  helpers: 75.00%% coverage
+  libraries: 100.00%% coverage
+
+Failed coverage test (controllers coverage too low).
+  Score: 0/20.0
+----------------------------------------
+
+----------------------------------------
+Running reference Cucumber scenarios:
+Disabling profiles...
+Feature: search for movies by director
+  
+  As a movie buff
+  So that I can find movies with my favorite director
+  I want to include and serach on director information in movies I enter
+
+  Background: movies in database      # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:7
+    Given the following movies exist: # features/step_definitions/movie_steps.rb:3
+      | title        | rating | director     | release_date |
+      | Star Wars    | PG     | George Lucas | 1977-05-25   |
+      | Blade Runner | PG     | Ridley Scott | 1982-06-25   |
+      | Alien        | R      |              | 1979-05-25   |
+      | THX-1138     | R      | George Lucas | 1971-03-11   |
+
+  Scenario: add director to existing movie                # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:16
+    When I go to the edit page for "Alien"                # features/step_definitions/web_steps.rb:48
+    And I fill in "Director" with "Ridley Scott"          # features/step_definitions/web_steps.rb:60
+    And I press "Update Movie Info"                       # features/step_definitions/web_steps.rb:52
+    Then the director of "Alien" should be "Ridley Scott" # features/step_definitions/movie_steps.rb:21
+
+  Scenario: find movie with same director                       # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:22
+    Given I am on the details page for "Star Wars"              # features/step_definitions/web_steps.rb:44
+    When I follow "Find Movies With Same Director"              # features/step_definitions/web_steps.rb:56
+    Then I should be on the Similar Movies page for "Star Wars" # features/step_definitions/web_steps.rb:230
+    And I should see "THX-1138"                                 # features/step_definitions/web_steps.rb:105
+    But I should not see "Blade Runner"                         # features/step_definitions/web_steps.rb:123
+
+  Scenario: can't find similar movies if we don't know director (sad path)   # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:29
+    Given I am on the details page for "Alien"                               # features/step_definitions/web_steps.rb:44
+    Then I should not see "Ridley Scott"                                     # features/step_definitions/web_steps.rb:123
+    When I follow "Find Movies With Same Director"                           # features/step_definitions/web_steps.rb:56
+    Then I should either be on the home page or the RottenPotatoes home page # features/step_definitions/saas_web_steps.rb:1
+      Can't find mapping from "the RottenPotatoes home page" to a path.
+      Now, go and add a mapping in /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/features/support/paths.rb (RuntimeError)
+      ./features/support/paths.rb:51:in `rescue in path_to'
+      ./features/support/paths.rb:46:in `path_to'
+      ./features/step_definitions/saas_web_steps.rb:3:in `block (2 levels) in '
+      ./features/step_definitions/saas_web_steps.rb:3:in `/^(?:|I )should either be on (.+) or (.+)$/'
+      ./required_features/director.feature:33:in `Then I should either be on the home page or the RottenPotatoes home page'
+    And I should see "'Alien' has no director info"                          # features/step_definitions/web_steps.rb:105
+
+Failing Scenarios:
+cucumber /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:29 # Scenario: can't find similar movies if we don't know director (sad path)
+
+3 scenarios (1 failed, 2 passed)
+17 steps (1 failed, 1 skipped, 15 passed)
+0m0.376s
+
+ *** ERROR: # *** 
+Coverage report generated for Cucumber Features, RSpec to /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/coverage. 39 / 52 LOC (75.0%) covered.
+Test passed. (+0.5)
+Disabling profiles...
+Feature: search for movies by director
+  
+  As a movie buff
+  So that I can find movies with my favorite director
+  I want to include and serach on director information in movies I enter
+
+  Background: movies in database      # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:7
+    Given the following movies exist: # features/step_definitions/movie_steps.rb:3
+      | title        | rating | director     | release_date |
+      | Star Wars    | PG     | George Lucas | 1977-05-25   |
+      | Blade Runner | PG     | Ridley Scott | 1982-06-25   |
+      | Alien        | R      |              | 1979-05-25   |
+      | THX-1138     | R      | George Lucas | 1971-03-11   |
+
+  Scenario: add director to existing movie                # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:16
+    When I go to the edit page for "Alien"                # features/step_definitions/web_steps.rb:48
+    And I fill in "Director" with "Ridley Scott"          # features/step_definitions/web_steps.rb:60
+    And I press "Update Movie Info"                       # features/step_definitions/web_steps.rb:52
+    Then the director of "Alien" should be "Ridley Scott" # features/step_definitions/movie_steps.rb:21
+
+  Scenario: find movie with same director                       # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:22
+    Given I am on the details page for "Star Wars"              # features/step_definitions/web_steps.rb:44
+    When I follow "Find Movies With Same Director"              # features/step_definitions/web_steps.rb:56
+    Then I should be on the Similar Movies page for "Star Wars" # features/step_definitions/web_steps.rb:230
+    And I should see "THX-1138"                                 # features/step_definitions/web_steps.rb:105
+    But I should not see "Blade Runner"                         # features/step_definitions/web_steps.rb:123
+
+  Scenario: can't find similar movies if we don't know director (sad path)   # /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:29
+    Given I am on the details page for "Alien"                               # features/step_definitions/web_steps.rb:44
+    Then I should not see "Ridley Scott"                                     # features/step_definitions/web_steps.rb:123
+    When I follow "Find Movies With Same Director"                           # features/step_definitions/web_steps.rb:56
+    Then I should either be on the home page or the RottenPotatoes home page # features/step_definitions/saas_web_steps.rb:1
+      Can't find mapping from "the RottenPotatoes home page" to a path.
+      Now, go and add a mapping in /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/features/support/paths.rb (RuntimeError)
+      ./features/support/paths.rb:51:in `rescue in path_to'
+      ./features/support/paths.rb:46:in `path_to'
+      ./features/step_definitions/saas_web_steps.rb:3:in `block (2 levels) in '
+      ./features/step_definitions/saas_web_steps.rb:3:in `/^(?:|I )should either be on (.+) or (.+)$/'
+      ./required_features/director.feature:33:in `Then I should either be on the home page or the RottenPotatoes home page'
+    And I should see "'Alien' has no director info"                          # features/step_definitions/web_steps.rb:105
+
+Failing Scenarios:
+cucumber /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/required_features/director.feature:29 # Scenario: can't find similar movies if we don't know director (sad path)
+
+3 scenarios (1 failed, 2 passed)
+17 steps (1 failed, 1 skipped, 15 passed)
+0m0.376s
+
+ *** ERROR: # *** 
+Coverage report generated for Cucumber Features, RSpec to /home/ubuntu/rag/submissions/361cda673fe6c2dba33e2357c9b6a130/assignment4/2017-07-18-06-49-01/coverage. 39 / 52 LOC (75.0%) covered.
+Test passed. (+0.5)
+----------------------------------------
+  2 out of 3 scenarios passed
+  Score: 26/40
+----------------------------------------
+Total score: 66.0 / 100.0
+Completed in 20.061196841 seconds.
