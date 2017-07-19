@@ -1,0 +1,13 @@
+%h2 Similar Movies page for #{@movie.title}
+
+%table#movies
+  %thead
+    %tr
+      %th Movie Title
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        %td= movie.title
+ 
+        
+        
